@@ -3,23 +3,24 @@ library(Cairo)
 
 rm(list=ls(all=TRUE))
 
-setwd("~/Desktop/wsanalysis/")
+setwd("~/Desktop/wsanalysis/net")
 # memberships <- list()
 
-G <- read.graph("mws.paj", format="pajek")
+G <- read.graph("ws100s.net", format="pajek")
 # is.simple(gs)
-G <- simplify(G)
+# G <- simplify(G)
 # 
-# G <- minimum.spanning.tree(G)
+G <- minimum.spanning.tree(G)
 
 # par(mfrow=c(3,2))
 
 degree(G)
 diameter(G)
+betweenness(G)
 
 lout <- layout.fruchterman.reingold(G)
 
-plot(G, layout=lout)
+plot(G, layout=lout, vertex.size=10)
 
 # ### leading.eigenvector.community
 # lec <- leading.eigenvector.community(G)

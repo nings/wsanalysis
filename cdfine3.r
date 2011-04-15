@@ -3,14 +3,14 @@ library(Cairo)
 
 rm(list=ls(all=TRUE))
 
-setwd("~/Desktop/wsanalysis/")
+setwd("~/Desktop/wsanalysis/net")
 # memberships <- list()
 
-G <- read.graph("mws.paj", format="pajek")
+G <- read.graph("ws100s.net", format="pajek")
 # is.simple(gs)
 G <- simplify(G)
 # 
-# G <- minimum.spanning.tree(G)
+G <- minimum.spanning.tree(G)
 
 par(mfrow=c(3,2))
 
