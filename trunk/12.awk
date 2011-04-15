@@ -6,8 +6,8 @@ print "*vertices 100"
 print "*edges"
 }
 {
-if($3<500)
-  print $1,$2,$3
+# if($3<500)
+  print $1,$2
 }
 END{
 }
