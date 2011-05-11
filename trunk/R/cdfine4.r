@@ -6,7 +6,7 @@ rm(list=ls(all=TRUE))
 setwd("~/Desktop/wsanalysis/net")
 # memberships <- list()
 
-G <- read.graph("ws100s.net", format="pajek")
+G <- read.graph("camx.net", format="pajek")
 # is.simple(gs)
 G <- simplify(G)
 # 
