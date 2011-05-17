@@ -22,6 +22,8 @@ def paths_from_to(graph, source, dest):
   m = dest.index
   return adjlist_find_paths(a, n, m)
   
-g = Graph.Read_Pajek("net/1.net")
+g = Graph.Read_Pajek("/home/amc/Desktop/wsanalysis/net/camx.net")
 print g
-adjlist_find_paths(g,1,10)
+layout = g.layout("kk")
+plot(g,layout=layout)
+#adjlist_find_paths(g,1,10)
