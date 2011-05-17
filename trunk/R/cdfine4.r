@@ -6,11 +6,11 @@ rm(list=ls(all=TRUE))
 setwd("~/Desktop/wsanalysis/net")
 # memberships <- list()
 
-G <- read.graph("camx.net", format="pajek")
+G <- read.graph("mitx.net", format="pajek")
 # is.simple(gs)
 G <- simplify(G)
 # 
-G <- minimum.spanning.tree(G)
+# G <- minimum.spanning.tree(G)
 betweenness(G)
 
 par(mfrow=c(2,2))
@@ -48,20 +48,20 @@ title(main="eigenvector")
 # modularity(G, comps)
 
 ### edge.betweenness.community
-wt <- edge.betweenness.community(G)
-wmemb <- community.to.membership(G, wt$merges,steps=which.max(wt$modularity)-1)
-memberships <- wmemb$membership
-## color
-comps <- memberships
-colbar <- rainbow(max(comps)+1)
-V(G)$color <- colbar[comps+1]
-plot(G, layout=lout, vertex.size=10)
-title(main="betweenness")
-modularity(G, comps)
-
-dend <- as.dendrogram(wt, use.modularity=TRUE)
-plot(dend, nodePar=list(pch=c(20, 20)))
-title(main="betweenness")
+# wt <- edge.betweenness.community(G)
+# wmemb <- community.to.membership(G, wt$merges,steps=which.max(wt$modularity)-1)
+# memberships <- wmemb$membership
+# ## color
+# comps <- memberships
+# colbar <- rainbow(max(comps)+1)
+# V(G)$color <- colbar[comps+1]
+# plot(G, layout=lout, vertex.size=10)
+# title(main="betweenness")
+# modularity(G, comps)
+# 
+# dend <- as.dendrogram(wt, use.modularity=TRUE)
+# plot(dend, nodePar=list(pch=c(20, 20)))
+# title(main="betweenness")
 
 
 ### label.propagation.community
@@ -74,20 +74,20 @@ title(main="betweenness")
 
 
 ### walktrap.community
-# wt <- walktrap.community(G)
-# wmemb <- community.to.membership(G, wt$merges,
-#                                 steps=which.max(wt$modularity)-1)
-# memberships <- wmemb$membership
-# 
-# comps <- memberships
-# 
-# ## color
-# colbar <- rainbow(max(comps)+1)
-# V(G)$color <- colbar[comps+1]
-# plot(G, layout=lout, vertex.size=10)
-# title(main="walktrap")
-# modularity(G, comps)
-# 
-# dend <- as.dendrogram(wt, use.modularity=TRUE)
-# plot(dend, nodePar=list(pch=c(20, 20)))
-# title(main="walktrap")
+wt <- walktrap.community(G)
+wmemb <- community.to.membership(G, wt$merges,
+                                steps=which.max(wt$modularity)-1)
+memberships <- wmemb$membership
+
+comps <- memberships
+
+## color
+colbar <- rainbow(max(comps)+1)
+V(G)$color <- colbar[comps+1]
+plot(G, layout=lout, vertex.size=10)
+title(main="walktrap")
+modularity(G, comps)
+
+dend <- as.dendrogram(wt, use.modularity=TRUE)
+plot(dend, nodePar=list(pch=c(20, 20)))
+title(main="walktrap")
