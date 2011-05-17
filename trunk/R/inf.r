@@ -40,6 +40,7 @@ par(mfrow=c(2,2))
 # di <- dist(ad)
 
 dis <- dist(ad)
+dis <- dis^2
 hc <- hclust(dis, "complete")
 # eva ward single
 
