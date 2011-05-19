@@ -9,7 +9,7 @@ rm(list=ls(all=TRUE))
 setwd("~/Desktop/wsanalysis/net")
 # memberships <- list()
 
-G <- read.graph("camx.net", format="pajek")
+G <- read.graph("infx.net", format="pajek")
 # is.simple(gs)
 G <- simplify(G)
 # G <- na.omit(G)
@@ -40,10 +40,11 @@ par(mfrow=c(2,2))
 # di <- dist(ad)
 
 dis <- dist(ad)
-dis <- dis^2
+# dis <- dis^2
 hc <- hclust(dis, "complete")
 # eva ward single
 
+hc$order
 # hc <- reorder.hclust(hc,dis)
 plot(hc)
 group <- cutree(hc,k=2)

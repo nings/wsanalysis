@@ -33,21 +33,16 @@ lout <- layout.fruchterman.reingold(G)
 # 
 # plot(G, layout=lout1, vertex.size=10)
 
-# plot(G, layout=lout)
-
-par(mfrow=c(2,2))
+par(mfrow=c(2,1))
 
 # di <- dist(ad)
 
 dis <- dist(ad)
-hc <- hclust(dis, "complete")
-# eva ward single
+hc <- hclust(dis, "ave")
+# ave ward single
 
 # hc <- reorder.hclust(hc,dis)
 # plot(hc)
-
-
-
 # # Ward Hierarchical Clustering with Bootstrapped p values
 # library(pvclust)
 # fit <- pvclust(ad, method.hclust="ward",
@@ -59,7 +54,8 @@ hc <- hclust(dis, "complete")
 dend <- as.dendrogram(hc, use.modularity=TRUE)
 plot(dend, nodePar=list(pch=c(20, 20)))
 
-group <- cutree(hc,k=2)
+group <- cutree(hc,k=4)
+group
 rect.hclust(hc,k=4,border="red")
 
 # Model Based Clustering
