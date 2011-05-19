@@ -15,8 +15,6 @@ x <- degree(G)
 # # 
 # G <- minimum.spanning.tree(G)
 b1 <- betweenness(G)
-cl1 <- closeness(G)
-cl1
 # plot(G)
 # 
 par(mfrow=c(2,2))
@@ -25,7 +23,6 @@ par(mfrow=c(2,2))
 lout <- layout.fruchterman.reingold(G)
 
 # plot(G, layout=lout, vertex.size=12)
-
 # memberships <- label.propagation.community(G)
 # comps1 <- memberships
 # comps <- c(0,0,1,0,0,0,1,)
@@ -56,42 +53,9 @@ plot(G, layout=lout, vertex.size=10)
 title(main="Fiedler for CAM")
 
 
-compsH <- c(1,1,0,1,1,1,0,1,1,1,0,0,1,1,1,0,1,1,1,1,0,0,1,1,0,1,0,0,1,1,1,0,1,0,1)
+# compsH <- c(1,1,0,1,1,1,0,1,1,1,0,0,1,1,1,0,1,1,1,1,0,0,1,1,0,1,0,0,1,1,1,0,1,0,1)
+compsH <- c(1,1,2,1,1,1,2,1,1,1,2,2,1,1,1,2,1,1,1,1,2,2,1,1,2,1,2,2,1,1,1,2,1,2,1,2)
 colbar <- rainbow(max(compsH)+1)
 V(G)$color <- colbar[compsH+1]
 plot(G, layout=lout, vertex.size=10)
 title(main="Hcluster for CAM")
-
-# ## walktrap.community
-# wt <- walktrap.community(G)
-# wmemb <- community.to.membership(G, wt$merges,
-#                                 steps=which.max(wt$modularity)-1)
-# memberships <- wmemb$membership
-# 
-# comps <- memberships
-# 
-# ## color
-# colbar <- rainbow(max(comps)+1)
-# V(G)$color <- colbar[comps+1]
-# plot(G, layout=lout, vertex.size=10)
-# title(main="walktrap")
-# modularity(G, comps)
-
-
-# ### leading.eigenvector.community
-# lec <- leading.eigenvector.community(G)
-# memberships <- lec$membership
-# 
-# comps <- memberships
-# 
-# ## color
-# colbar <- rainbow(max(comps)+1)
-# V(G)$color <- colbar[comps+1]
-# plot(G, layout=lout, vertex.size=10)
-# title(main="walktrap")
-# modularity(G, comps)
-# title(main="leading.eigenvector.community")
-# 
-# dend <- as.dendrogram(lec, use.modularity=TRUE)
-# plot(dend, nodePar=list(pch=c(20, 20)))
-# title(main="eigenvector")
