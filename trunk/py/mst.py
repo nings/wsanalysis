@@ -4,7 +4,7 @@ from igraph import *
 def distance(p1, p2):
     return ((p1[0]-p2[0]) ** 2 + (p1[1]-p2[1]) ** 2) ** 0.5
     
-g = Graph.Read_Pajek("net/1.net")
+g = Graph.Read_Pajek("../net/camx.net")
 
 #s = Graph.Lattice([2,5])
 #g = Graph.Watts_Strogatz(5 , 2, 1, 0.6)

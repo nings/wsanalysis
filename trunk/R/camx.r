@@ -16,6 +16,7 @@ x <- degree(G)
 # G <- minimum.spanning.tree(G)
 b1 <- betweenness(G)
 cl1 <- closeness(G)
+min(cl1)
 cl1
 # plot(G)
 # 
