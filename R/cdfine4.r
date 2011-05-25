@@ -6,14 +6,14 @@ rm(list=ls(all=TRUE))
 setwd("~/Desktop/wsanalysis/net")
 # memberships <- list()
 
-G <- read.graph("mitx.net", format="pajek")
+G <- read.graph("wsx.net", format="pajek")
 # is.simple(gs)
 G <- simplify(G)
 # 
-# G <- minimum.spanning.tree(G)
+G <- minimum.spanning.tree(G)
 betweenness(G)
 
-par(mfrow=c(2,2))
+par(mfrow=c(3,3))
 
 lout <- layout.fruchterman.reingold(G)
 
@@ -29,48 +29,48 @@ plot(G, layout=lout, vertex.size=10)
 title(main="eigenvector")
 modularity(G, comps)
 
-dend <- as.dendrogram(lec, use.modularity=TRUE)
-plot(dend, nodePar=list(pch=c(20, 20)))
-title(main="eigenvector")
+# dend <- as.dendrogram(lec, use.modularity=TRUE)
+# plot(dend, nodePar=list(pch=c(20, 20)))
+# title(main="eigenvector")
 
 # layout.fruchterman.reingold
 # layout.fruchterman.reingold
 
 ### spinglass.community
-# sc <- spinglass.community(G, spins=10)
-# memberships <- sc$membership
-# ## color
-# comps <- memberships
-# colbar <- rainbow(max(comps)+1)
-# V(G)$color <- colbar[comps+1]
-# plot(G, layout=lout, vertex.size=10)
-# title(main="spinglass")
-# modularity(G, comps)
+sc <- spinglass.community(G, spins=10)
+memberships <- sc$membership
+## color
+comps <- memberships
+colbar <- rainbow(max(comps)+1)
+V(G)$color <- colbar[comps+1]
+plot(G, layout=lout, vertex.size=10)
+title(main="spinglass")
+modularity(G, comps)
 
 ### edge.betweenness.community
-# wt <- edge.betweenness.community(G)
-# wmemb <- community.to.membership(G, wt$merges,steps=which.max(wt$modularity)-1)
-# memberships <- wmemb$membership
-# ## color
-# comps <- memberships
-# colbar <- rainbow(max(comps)+1)
-# V(G)$color <- colbar[comps+1]
-# plot(G, layout=lout, vertex.size=10)
-# title(main="betweenness")
-# modularity(G, comps)
-# 
-# dend <- as.dendrogram(wt, use.modularity=TRUE)
-# plot(dend, nodePar=list(pch=c(20, 20)))
-# title(main="betweenness")
+wt <- edge.betweenness.community(G)
+wmemb <- community.to.membership(G, wt$merges,steps=which.max(wt$modularity)-1)
+memberships <- wmemb$membership
+## color
+comps <- memberships
+colbar <- rainbow(max(comps)+1)
+V(G)$color <- colbar[comps+1]
+plot(G, layout=lout, vertex.size=10)
+title(main="betweenness")
+modularity(G, comps)
+
+dend <- as.dendrogram(wt, use.modularity=TRUE)
+plot(dend, nodePar=list(pch=c(20, 20)))
+title(main="betweenness")
 
 
 ### label.propagation.community
-# memberships <- label.propagation.community(G)
-# comps <- memberships
-# colbar <- rainbow(max(comps)+1)
-# V(G)$color <- colbar[comps+1]
-# plot(G, layout=lout, vertex.size=10)
-# title(main="label.propagation.community")
+memberships <- label.propagation.community(G)
+comps <- memberships
+colbar <- rainbow(max(comps)+1)
+V(G)$color <- colbar[comps+1]
+plot(G, layout=lout, vertex.size=10)
+title(main="label.propagation.community")
 
 
 ### walktrap.community
